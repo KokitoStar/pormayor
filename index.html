@@ -280,44 +280,47 @@
 
         .instructions {
             background: linear-gradient(135deg, #2a2a2a, #3a3a3a);
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 30px;
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 25px;
             border: 2px solid #E50695;
         }
 
         .instructions h3 {
             color: #E50695;
-            font-size: 1.4em;
-            margin-bottom: 15px;
+            font-size: 1.2em;
+            margin-bottom: 12px;
             text-align: center;
         }
 
         .step {
             display: flex;
             align-items: center;
-            margin-bottom: 15px;
-            padding: 10px;
+            margin-bottom: 8px;
+            padding: 6px;
             background: rgba(229, 6, 149, 0.1);
-            border-radius: 8px;
+            border-radius: 6px;
         }
 
         .step-number {
             background: #E50695;
             color: white;
-            width: 30px;
-            height: 30px;
+            width: 22px;
+            height: 22px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            margin-right: 15px;
+            font-size: 0.8em;
+            margin-right: 10px;
             flex-shrink: 0;
         }
 
         .step-text {
             flex: 1;
+            font-size: 0.9em;
+            line-height: 1.3;
         }
 
         .counters {
@@ -1046,6 +1049,173 @@
             }
         }
 
+        /* GLOBO FLOTANTE RESUMEN EJECUTIVO - COMPACTO */
+        .floating-profit-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #28a745, #20c997);
+            border-radius: 15px;
+            padding: 12px;
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+            color: white;
+            min-width: 200px;
+            max-width: 220px;
+            z-index: 999;
+            transition: all 0.3s ease;
+            transform: translateY(100px);
+            opacity: 0;
+            pointer-events: none;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .floating-profit-widget.show {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .floating-profit-widget:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.5);
+        }
+
+        .profit-widget-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 6px;
+        }
+
+        .profit-widget-title {
+            font-size: 0.9em;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .profit-widget-toggle {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .profit-widget-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .profit-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4px;
+            font-size: 0.8em;
+        }
+
+        .profit-row.highlight {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            padding: 4px 6px;
+            margin: 4px -6px;
+            font-weight: bold;
+            font-size: 0.85em;
+        }
+
+        .profit-value {
+            font-weight: bold;
+            font-family: 'Arial Black', Arial, sans-serif;
+        }
+
+        .profit-value.big {
+            font-size: 1.1em;
+            color: #FFD700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .profit-suggestions {
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            font-size: 0.75em;
+            opacity: 0.9;
+        }
+
+        .profit-tip {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 4px 6px;
+            border-radius: 4px;
+            margin-top: 4px;
+            font-style: italic;
+        }
+
+        /* ANIMACIONES COMPACTAS */
+        @keyframes profitPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+
+        .profit-value.animate {
+            animation: profitPulse 0.4s ease;
+        }
+
+        @keyframes profitGlow {
+            0% { box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4); }
+            50% { box-shadow: 0 8px 25px rgba(40, 167, 69, 0.7), 0 0 15px rgba(255, 215, 0, 0.3); }
+            100% { box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4); }
+        }
+
+        .floating-profit-widget.profit-updated {
+            animation: profitGlow 1s ease;
+        }
+
+        /* RESPONSIVE COMPACTO */
+        @media (max-width: 768px) {
+            .floating-profit-widget {
+                bottom: 80px;
+                right: 10px;
+                min-width: 180px;
+                max-width: 200px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .floating-profit-widget {
+                bottom: 70px;
+                right: 10px;
+                left: auto;
+                min-width: 160px;
+                max-width: 180px;
+                padding: 10px;
+            }
+            
+            .profit-widget-title {
+                font-size: 0.8em;
+            }
+            
+            .profit-row {
+                font-size: 0.75em;
+            }
+            
+            .profit-suggestions {
+                font-size: 0.7em;
+            }
+        }
+
         /* MEDIA QUERY PARA PANTALLAS MUY PEQUEÑAS */
         @media (max-width: 400px) {
             .motivo-image-container {
@@ -1154,28 +1324,28 @@
                 <div class="step">
                     <div class="step-number">1</div>
                     <div class="step-text">
-                        <strong>Selecciona motivos:</strong> Elige los diseños que quieres y la cantidad de cada uno. Mínimo 100 tatuajes para procesar el pedido.
+                        <strong>Selecciona motivos:</strong> Elige diseños y cantidades. Mínimo 100 tatuajes.
                     </div>
                 </div>
 
                 <div class="step">
                     <div class="step-number">2</div>
                     <div class="step-text">
-                        <strong>Escoge colores:</strong> Selecciona los colores de glitter que prefieras o elige "Todos los colores".
+                        <strong>Escoge colores:</strong> Selecciona glitter o "Todos los colores".
                     </div>
                 </div>
 
                 <div class="step">
                     <div class="step-number">3</div>
                     <div class="step-text">
-                        <strong>Completa datos:</strong> Llena el formulario con tu información comercial y dirección de envío.
+                        <strong>Completa datos:</strong> Llena información comercial y envío.
                     </div>
                 </div>
 
                 <div class="step">
                     <div class="step-number">4</div>
                     <div class="step-text">
-                        <strong>Confirma pedido:</strong> Revisa tu cotización y confirma por WhatsApp para procesar tu orden.
+                        <strong>Confirma pedido:</strong> Revisa cotización y confirma por WhatsApp.
                     </div>
                 </div>
             </div>
@@ -1341,6 +1511,42 @@
         </div>
     </div>
 
+    <!-- WIDGET FLOTANTE RESUMEN EJECUTIVO COMPACTO -->
+    <div class="floating-profit-widget" id="profitWidget">
+        <div class="profit-widget-header">
+            <div class="profit-widget-title">
+                💰 Resumen Ejecutivo
+            </div>
+            <button class="profit-widget-toggle" onclick="toggleProfitWidget()" title="Minimizar">
+                ─
+            </button>
+        </div>
+        <div id="profitWidgetContent">
+            <div class="profit-row">
+                <span>Cantidad de tatuajes:</span>
+                <span class="profit-value" id="widgetQuantity">0</span>
+            </div>
+            <div class="profit-row">
+                <span>Costo unitario:</span>
+                <span class="profit-value" id="widgetUnitCost">$0</span>
+            </div>
+            <div class="profit-row">
+                <span>Inversión total:</span>
+                <span class="profit-value" id="widgetTotalCost">$0</span>
+            </div>
+            <div class="profit-row highlight">
+                <span>💎 Margen sugerido:</span>
+                <span class="profit-value big" id="widgetProfitMargin">$0</span>
+            </div>
+            <div class="profit-suggestions" id="widgetSuggestions">
+                <div>💡 <strong>Precio de venta sugerido:</strong> <span id="suggestedPrice">$0</span> c/u</div>
+                <div class="profit-tip" id="profitTip">
+                    Selecciona tatuajes para ver tu análisis de rentabilidad
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         const motivos = [
             'Águila', 'Araña', 'Arcoíris', 'Barbie', 'Batman', 'Beso', 
@@ -1374,7 +1580,7 @@
             'Batman': 'motivos/K_Batman.png',
             'Beso': 'motivos/K_Beso.png',
             'Caballo': 'motivos/K_Caballo.png',
-            'Carita feliz': 'motivos/K_Carita_feliz.png',
+            'Carita feliz': 'motivos/K_Carita_Feliz.png',
             'Corazón Karol G': 'motivos/K_Crazon_CG.png',
             'Delfín': 'motivos/K_Delfin.png',
             'Dinosaurio': 'motivos/K_Dinosaurio.png',
@@ -1403,10 +1609,20 @@
         let selectedColores = [];
         let allColorsSelected = false;
         let currentStep = 1;
+        let isWidgetMinimized = false;
         const MIN_TATUAJES = 100;
         const PRECIO_TIER1 = 3400; // 100-200 unidades
         const PRECIO_TIER2 = 3000; // 201+ unidades
         const DOMICILIO = 20000;
+        
+        // CONFIGURACIÓN DEL RESUMEN EJECUTIVO
+        const PROFIT_CONFIG = {
+            // Precios de venta sugeridos por tier
+            suggestedPrices: {
+                tier1: 10000, // Para compras a $3400
+                tier2: 10000  // Para compras a $3000
+            }
+        };
 
         function handleImageError(img) {
             img.style.display = 'none';
@@ -1787,6 +2003,75 @@
                 inclusionsInfo.style.display = 'block';
             } else {
                 inclusionsInfo.style.display = 'none';
+            }
+            
+            // Actualizar widget de resumen ejecutivo
+            updateProfitWidget();
+        }
+
+        // FUNCIONES DEL WIDGET DE RESUMEN EJECUTIVO
+        function updateProfitWidget() {
+            const totalTatuajes = getTotalTatuajes();
+            const widget = document.getElementById('profitWidget');
+            
+            if (totalTatuajes >= MIN_TATUAJES) {
+                const precioUnitario = getPrecioUnitario();
+                const inversionTotal = (totalTatuajes * precioUnitario) + DOMICILIO;
+                const precioVentaSugerido = totalTatuajes >= 201 ? 
+                    PROFIT_CONFIG.suggestedPrices.tier2 : 
+                    PROFIT_CONFIG.suggestedPrices.tier1;
+                const margenPorTatuaje = precioVentaSugerido - precioUnitario;
+                const margenTotal = margenPorTatuaje * totalTatuajes;
+                
+                // Actualizar valores en el widget
+                updateProfitValue('widgetQuantity', totalTatuajes.toLocaleString());
+                updateProfitValue('widgetUnitCost', `${precioUnitario.toLocaleString()}`);
+                updateProfitValue('widgetTotalCost', `${inversionTotal.toLocaleString()}`);
+                updateProfitValue('widgetProfitMargin', `${margenTotal.toLocaleString()}`);
+                document.getElementById('suggestedPrice').textContent = `${precioVentaSugerido.toLocaleString()}`;
+                
+                // Actualizar tip
+                const roi = ((margenTotal / inversionTotal) * 100).toFixed(0);
+                document.getElementById('profitTip').innerHTML = 
+                    `🚀 <strong>ROI estimado: ${roi}%</strong> - Ganancia de ${margenPorTatuaje.toLocaleString()} por tatuaje`;
+                
+                // Mostrar widget con animación
+                widget.classList.add('show');
+                widget.classList.add('profit-updated');
+                setTimeout(() => widget.classList.remove('profit-updated'), 1000);
+                
+            } else {
+                // Ocultar widget si no hay suficientes tatuajes
+                widget.classList.remove('show');
+            }
+        }
+
+        function updateProfitValue(elementId, newValue) {
+            const element = document.getElementById(elementId);
+            if (element.textContent !== newValue) {
+                element.textContent = newValue;
+                element.classList.add('animate');
+                setTimeout(() => element.classList.remove('animate'), 600);
+            }
+        }
+
+        function toggleProfitWidget() {
+            const widget = document.getElementById('profitWidget');
+            const content = document.getElementById('profitWidgetContent');
+            const toggle = document.querySelector('.profit-widget-toggle');
+            
+            if (isWidgetMinimized) {
+                // Expandir
+                content.style.display = 'block';
+                toggle.textContent = '─';
+                toggle.title = 'Minimizar';
+                isWidgetMinimized = false;
+            } else {
+                // Minimizar
+                content.style.display = 'none';
+                toggle.textContent = '+';
+                toggle.title = 'Expandir';
+                isWidgetMinimized = true;
             }
         }
 
