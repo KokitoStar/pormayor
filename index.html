@@ -1349,6 +1349,19 @@
                 </div>
             </div>
 
+            <div id="alerts"></div>
+
+            <div class="section">
+                <h2 class="section-title">🎨 Selecciona tus Motivos <span style="font-family: Arial, sans-serif; font-weight: normal;">(mínimo 100 unidades)</span></h2>
+                <div class="motivos-grid" id="motivosGrid"></div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">🌈 Selecciona Colores de Glitter</h2>
+                <div class="colores-grid" id="coloresGrid"></div>
+            </div>
+
+            <!-- RESUMEN MOVIDO AQUÍ -->
             <div class="counters">
                 <div class="counter">
                     <span class="counter-number" id="totalTatuajes">0</span>
@@ -1376,18 +1389,6 @@
                         <span><strong id="glitterText">0 glitter</strong> de colores</span>
                     </div>
                 </div>
-            </div>
-
-            <div id="alerts"></div>
-
-            <div class="section">
-                <h2 class="section-title">🎨 Selecciona tus Motivos <span style="font-family: Arial, sans-serif; font-weight: normal;">(mínimo 100 unidades)</span></h2>
-                <div class="motivos-grid" id="motivosGrid"></div>
-            </div>
-
-            <div class="section">
-                <h2 class="section-title">🌈 Selecciona Colores de Glitter</h2>
-                <div class="colores-grid" id="coloresGrid"></div>
             </div>
 
             <div class="section">
@@ -1778,18 +1779,6 @@
             if (totalTatuajes === 201) {
                 showAlert('🎉 ¡Excelente! Has alcanzado más de 200 tatuajes. Precio reducido a $3.000 por unidad', 'success');
             }
-            
-            // Auto-avanzar si cumple condiciones
-            if (totalTatuajes >= MIN_TATUAJES && currentStep < 2) {
-                updateProgressBar(2);
-                setTimeout(() => {
-                    document.querySelector('.section:has(#coloresGrid)').scrollIntoView({ 
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                    showAlert('✅ ¡Perfecto! Ahora elige tus colores de glitter ⬇️', 'success');
-                }, 500);
-            }
         }
 
         function decreaseQuantity(motivo) {
@@ -1853,18 +1842,6 @@
             if (totalTatuajes === 201) {
                 showAlert('🎉 ¡Excelente! Has alcanzado más de 200 tatuajes. Precio reducido a $3.000 por unidad', 'success');
             }
-            
-            // Auto-avanzar si cumple condiciones
-            if (totalTatuajes >= MIN_TATUAJES && currentStep < 2) {
-                updateProgressBar(2);
-                setTimeout(() => {
-                    document.querySelector('.section:has(#coloresGrid)').scrollIntoView({ 
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                    showAlert('✅ ¡Perfecto! Ahora elige tus colores de glitter ⬇️', 'success');
-                }, 500);
-            }
         }
 
         function handleEnterKey(event, motivo) {
@@ -1891,19 +1868,6 @@
                 });
                 
                 showAlert('✅ Has seleccionado todos los colores de glitter disponibles', 'success');
-                
-                // Avanzar al siguiente paso si cumple condiciones
-                const totalTatuajes = getTotalTatuajes();
-                if (totalTatuajes >= MIN_TATUAJES && currentStep < 3) {
-                    updateProgressBar(3);
-                    setTimeout(() => {
-                        document.querySelector('.section:has(.shipping-form)').scrollIntoView({ 
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                        showAlert('✅ ¡Perfecto! Ahora completa tu información comercial ⬇️', 'success');
-                    }, 1000);
-                }
             } else {
                 // Deseleccionar todos los colores
                 allColorsSelected = false;
@@ -1930,19 +1894,6 @@
             } else {
                 selectedColores.splice(colorIndex, 1);
                 colorItem.classList.remove('selected');
-            }
-            
-            // Avanzar al siguiente paso si cumple condiciones
-            const totalTatuajes = getTotalTatuajes();
-            if (totalTatuajes >= MIN_TATUAJES && (selectedColores.length > 0 || allColorsSelected) && currentStep < 3) {
-                updateProgressBar(3);
-                setTimeout(() => {
-                    document.querySelector('.section:has(.shipping-form)').scrollIntoView({ 
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                    showAlert('✅ ¡Perfecto! Ahora completa tu información comercial ⬇️', 'success');
-                }, 1000);
             }
             
             updateWhatsAppButton();
@@ -2276,11 +2227,6 @@
                             updatePricingSummary();
                         }, 100);
                         setTimeout(() => {
-                            document.querySelector('.pricing-summary').scrollIntoView({ 
-                                behavior: 'smooth',
-                                block: 'start'
-                            });
-                            document.querySelector('.pricing-summary').classList.add('slide-in');
                             showAlert('✅ ¡Todo listo! Revisa tu cotización y confirma por WhatsApp ⬇️', 'success');
                         }, 300);
                     }
